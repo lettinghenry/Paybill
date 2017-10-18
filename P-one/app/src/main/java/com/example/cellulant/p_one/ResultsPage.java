@@ -6,26 +6,34 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class ResultsPage extends AppCompatActivity {
 
-    private  Button
+    RelativeLayout reltv_container;
+    TextView txt_status;
+    TextView txt_status_description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_page);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        initialise();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+    }
+
+    private void initialise(){
+        reltv_container = (RelativeLayout) findViewById(R.id.reltv_container);
+        txt_status = (TextView) findViewById(R.id.txt_status);
+        txt_status_description = (TextView) findViewById(R.id.txt_status_description);
+
+    }
+
+    private void setDataOnViews(){
+
     }
 
 }
