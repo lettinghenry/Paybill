@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cellulant.p_one.utils.AppConstants;
+import com.example.cellulant.p_one.utils.LogUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,22 +26,27 @@ public class MainActivity extends AppCompatActivity {
 
     String amount = "";
     String phoneNumber = "";
-
+    String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialise();
+        authenticationRequest();
+
+        GetPaymentOptions(new String[]{""}, new String[]{});
+
+        postCheckOutRequest(new String[]{"MSISDN", "clientCode", "serviceCode", "countryCode", "transactionReferenceID", "paymentOptionCode", "paymentMode", "currencyCode", "amount", "accountNumber", "language", "access_token"}, new String[]{});
     }
 
-    public void AuthenticationRequest() {
+    public void authenticationRequest() {
 
         StringRequest request = new StringRequest(Request.Method.POST, AppConstants.URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        LogUtils.logMessage(TAG,"@response " + response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -65,11 +71,13 @@ public class MainActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
 
-    public void GetPaymentOptions(final String values[], final String keys[]) {
-        StringRequest request = new StringRequest(Request.Method.POST, AppConstants.URL,
+    public void GetPaymentOptions(final String keys[], final String values[]) {
+        StringRequest request = new StringRequest(Request.Method.GET, AppConstants.PayersURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
+                        LogUtils.logMessage(TAG,"@response payers" + response);
 
                     }
                 },
