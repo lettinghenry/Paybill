@@ -4,29 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cellulant.p_one.MainActivity"
-    android:paddingRight="13dp"
     android:paddingLeft="13dp"
-    >
+    android:paddingRight="13dp"
+    android:paddingTop="13dp"
+    tools:context="com.example.cellulant.p_one.MainActivity">
 
     <TextView
-        android:id="@+id/amount"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="21dp"
-        android:text="Playground"
-        android:gravity="center_horizontal"
-        android:textColor="@android:color/holo_purple"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:gravity="center_horizontal"
+        android:text="Playground"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="21dp" />
 
-  <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-      android:hint="enter transactional amount"
-      android:layout_centerVertical="true"
-      android:layout_alignParentStart="true" />
 
+
+    <EditText
+        android:id="@+id/edt_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:hint="Enter Phone Number" />
+
+    <EditText
+        android:id="@+id/edt_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/edt_amount"
+        android:layout_marginTop="30dp"
+        android:hint="Enter Amount" />
 
     <Button
         android:id="@+id/btn_pay"
@@ -34,11 +47,10 @@
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
+        android:background="@android:color/holo_purple"
         android:text="PAY"
         android:textColor="#fff"
-        android:textSize="16sp"
-        android:background="@android:color/holo_purple"
-        />
+        android:textSize="16sp" />
 
 
 </RelativeLayout>
