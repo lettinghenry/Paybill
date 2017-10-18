@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         GetPaymentOptions(new String[]{""}, new String[]{});
 
-        postCheckOutRequest(new String[]{"MSISDN", "clientCode", "serviceCode", "countryCode", "transactionReferenceID", "paymentOptionCode", "paymentMode", "currencyCode", "amount", "accountNumber", "language", "access_token"}, new String[]{});
+        postCheckOutRequest(
+                new String[]{"MSISDN", "clientCode", "serviceCode", "countryCode", "transactionReferenceID", "paymentOptionCode", "paymentMode", "currencyCode", "amount", "accountNumber", "language", "access_token"},
+                new String[]{});
     }
 
     public void authenticationRequest() {
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        LogUtils.logMessage(TAG,"@response " + response);
+                        LogUtils.logMessage(TAG, "@response " + response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -55,6 +57,17 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                Map<String, String> headers = new HashMap<>();
+
+                headers.put("Accept", "application/json");
+                headers.put("Authorization", "Bearer {$access_token}");
+
+                return headers;
+            }
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -77,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        LogUtils.logMessage(TAG,"@response payers" + response);
+                        LogUtils.logMessage(TAG, "@response payers" + response);
 
                     }
                 },
@@ -133,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
 
-    private void initialise(){
+    private void initialise() {
         edtPhoneNumber = (EditText) findViewById(R.id.edt_phone_number);
         edtAmount = (EditText) findViewById(R.id.edt_amount);
         payButton = (Button) findViewById(R.id.btn_pay);
@@ -145,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getDataOnViews(){
+    private void getDataOnViews() {
         amount = edtAmount.getText().toString();
         phoneNumber = edtPhoneNumber.getText().toString();
     }
